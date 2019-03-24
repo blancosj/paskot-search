@@ -5,15 +5,16 @@
     "node": "8.8.1"
   },
   "description": "",
-  "main": "./src/app.js",
+  "main": "./backend/index.js",
   "scripts": {
-    "start": "node ./src/app.js",
+    "start": "node ./backend/index.js",
     "heroku-postbuild": "webpack -p",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "José Blanco <blancosj@gmail.com> (http://www.interactions.com/jblanco)",
   "license": "ISC",
   "devDependencies": {
+    "express": "^4.16.4",
     "terminal.css": "^0.6.6",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0"
