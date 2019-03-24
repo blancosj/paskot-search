@@ -1,6 +1,9 @@
 {
   "name": "paskot",
   "version": "1.0.0",
+  "engines": {
+    "node": "8.8.1"
+  },
   "description": "",
   "main": "./src/app.js",
   "scripts": {
@@ -11,6 +14,7 @@
   "author": "José Blanco <blancosj@gmail.com> (http://www.interactions.com/jblanco)",
   "license": "ISC",
   "devDependencies": {
+    "terminal.css": "^0.6.6",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0"
   }
