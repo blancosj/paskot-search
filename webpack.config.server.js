@@ -1,6 +1,6 @@
 module.exports = {
   entry: [
-    './backend/index.js'
+    './src/index.js'
   ],
   output: {
     path: path.resolve(__dirname, "../dist"),
