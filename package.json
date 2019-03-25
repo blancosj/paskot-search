@@ -8,17 +8,16 @@
   "main": "./backend/index.js",
   "scripts": {
     "start": "node ./backend/index.js",
-    "heroku-postbuild": "webpack -p",
+    "heroku-postbuild": "webpack -p --config webpack.config.server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "José Blanco <blancosj@gmail.com> (http://www.interactions.com/jblanco)",
   "license": "ISC",
   "devDependencies": {
     "express": "^4.16.4",
-    "fs": "0.0.1-security",
-    "net": "^1.0.2",
     "terminal.css": "^0.6.6",
     "webpack": "^4.29.6",
-    "webpack-cli": "^3.3.0"
+    "webpack-cli": "^3.3.0",
+    "webpack-node-externals": "^1.7.2"
   }
 }
