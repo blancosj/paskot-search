@@ -5,4 +5,4 @@ const App = () => (
   <p>Hello World!</p>
 );
 
-ReactDom.render(<Index />, document.getElementById('index'));
+ReactDom.render(<App/>, document.getElementById('index'));
