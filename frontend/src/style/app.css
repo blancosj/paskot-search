@@ -1,3 +1,39 @@
 #syno-nsc-ext-gen3 {
   padding-top: 20px;
 }
+
+#search-main-logo::after {
+    content: "";
+    -webkit-animation: cursor .8s infinite;
+    animation: cursor .8s infinite;
+    background: var(--secondary-color);
+    border-radius: 0;
+    display: inline-block;
+    height: 1em;
+    margin-left: .2em;
+    width: 3px;
+    bottom: -2px;
+    position: relative;
+}
+
+div.search-input {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.search-input > * {
+
+}
+
+.search-input > input {
+
+}
+
+.search-input > button {
+  border: 1px solid black;
+  margin-left: 5px;
+}
+
+.form-search {
+
+}

@@ -8,7 +8,7 @@
   "main": "./dist/index.js",
   "scripts": {
     "start": "node ./dist/bundle.js",
-    "build-frontend": "(cd frontend && webpack -p --config webpack.config.js)",
+    "build-frontend": "(cd frontend && webpack -p --config webpack.config.js --watch --progress)",
     "build": "webpack -p --config webpack.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
