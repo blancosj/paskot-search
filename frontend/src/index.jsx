@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import 'terminal.css';
+import './style/app.css';
 
 const App = () => (
   <div class="container">

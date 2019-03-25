@@ -24,7 +24,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        include: /node_modules/,
+        include: /node_modules|src/,
         loaders: ['style-loader', 'css-loader']
       }
     ]
