@@ -8,7 +8,7 @@
   "main": "./dist/index.js",
   "scripts": {
     "start": "node ./dist/bundle.js",
-    "build": "(cd frontend && webpack -p --config webpack.config.js) && (webpack -p --config webpack.config.js)",
+    "build": "webpack -p --config webpack.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "José Blanco <blancosj@gmail.com> (http://www.interactions.com/jblanco)",
