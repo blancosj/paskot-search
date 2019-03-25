@@ -9,7 +9,6 @@ module.exports = {
   target: 'web',
   output: {
     path: path.resolve(__dirname, '../public'),
-    // publicPath: 'dist',
     filename: 'bundle-front.js',
   },
   module: {
