@@ -6,15 +6,16 @@ import './style/app.css';
 const App = () => (
   <div class="container">
     <section>
-      <header><h2 id="Cards">Cards</h2></header>
-      <div class="terminal-card">
-        <header>Card Title</header>
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita, quas
-          ex vero enim in doloribus officiis ullam vel nam esse sapiente velit
-          incidunt. Eaque quod et, aut maiores excepturi sint.
-        </div>
-      </div>
+      <header><h2 id="Forms">Forms</h2></header>
+      <form action="#">
+        <fieldset>
+          <legend>Form legend</legend>
+          <div class="form-group">
+            <label for="email">Email input:</label>
+            <input id="email" name="email" type="email" required="" minlength="5" placeholder="test"/>
+          </div>
+        </fieldset>
+      </form>
     </section>
   </div>
 );
