@@ -37,7 +37,8 @@ class App extends React.Component {
     .then(json => {
       this.setState(state => {
         return {
-          findings: json
+          findings: json,
+          search: q
         }
       });
     })
@@ -47,12 +48,10 @@ class App extends React.Component {
     event.preventDefault();
 
     this.doSearch(this.search.current.value);
-    this.search.current.value = '';
   }
 
   handleOnClick(event) {
     this.doSearch(this.search.current.value);
-    this.search.current.value = '';
   }
 
   encodeHTML(s) {
@@ -79,6 +78,11 @@ class App extends React.Component {
               <button class="btn btn-default" onClick={::this.handleOnClick}>Go</button>
             </div>
           </form>
+        </section>
+        <section>
+          <header>
+            { _.isEmpty(findings) && !_.isEmpty(search) && <p>Nothing found.</p> }
+          </header>
         </section>
         {
           _.map(findings, (value, key, collection) => {

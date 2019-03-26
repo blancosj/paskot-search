@@ -25,10 +25,7 @@ const all = (req, res) => {
   };
 
   rec(items, [])
-    .then((result) => {
-      console.log(result);
-      res.send(result);
-    })
+    .then((result) => { res.send(result) })
 }
 
 module.exports = all;
