@@ -4,6 +4,7 @@ import 'terminal.css';
 import './style/app.css';
 import _ from 'lodash'
 import ItemFound from './ItemFound'
+import ItemFoundTable from './ItemFoundTable'
 
 class App extends React.Component {
 
@@ -19,24 +20,39 @@ class App extends React.Component {
     this.state = this.INITIAL_STATE;
   }
 
+  doSearch(q) {
+
+    if (_.isEmpty(q)) {
+      return;
+    }
+
+    fetch('/q', {
+      method: 'POST',
+      body: JSON.stringify({ s: q }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(res => res.json())
+    .then(json => {
+      this.setState(state => {
+        return {
+          findings: json
+        }
+      });
+    })
+  }
+
   handleOnSubmit(event) {
     event.preventDefault();
 
+    this.doSearch(this.search.current.value);
     this.search.current.value = '';
   }
 
   handleOnClick(event) {
-    if (_.isEmpty(this.search.current.value)) {
-      return;
-    }
-
-    this.setState(state => {
-      return {
-        findings: [...state.findings, [
-          this.encodeHTML(this.search.current.value)
-        ]]
-      }
-    });
+    this.doSearch(this.search.current.value);
+    this.search.current.value = '';
   }
 
   encodeHTML(s) {
@@ -67,7 +83,14 @@ class App extends React.Component {
 
         {
           _.map(findings, (value, key, collection) => {
-            return ( <ItemFound finding={value} /> )
+            switch (value.typeItem) {
+              case 'TABLE':
+                return ( <ItemFoundTable finding={value} /> )
+              default:
+                return ( <ItemFound finding={value} /> )
+            }
+
+            // return ( <p>hola</p> )
           })
         }
       </div>

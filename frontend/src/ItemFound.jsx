@@ -10,12 +10,17 @@ class ItemFound extends React.Component {
   render() {
 
     const { finding } = this.props
+    const header = {__html: finding.header}
+    const content = {__html: finding.content}
 
     return (
       <section>
-        <header><h3>{finding}</h3></header>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita, quas ex vero enim in doloribus officiis ullam vel nam esse sapiente velit incidunt. Eaque quod et, aut maiores excepturi sint.</p>
-        <hr/>
+        { finding.header &&
+          <h3><div dangerouslySetInnerHTML={header}></div></h3>
+        }
+        { finding.content &&
+          <p><pre><div dangerouslySetInnerHTML={content}></div></pre></p>
+        }
       </section>
     )
   }
@@ -25,4 +30,4 @@ ItemFound.defaultProps = {
   finding: 'nothing'
 };
 
-export default ItemFound;
+export default ItemFound
