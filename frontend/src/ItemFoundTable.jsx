@@ -14,7 +14,7 @@ class ItemFoundTable extends React.Component {
     return (
       <section>
         <pre>
-          <h3>`${finding.header} - ${finding.content.caption}`</h3>
+          <h3>{`${finding.header} - ${finding.content.caption}`}</h3>
           <table>
             <thead><tr>
               {

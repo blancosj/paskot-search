@@ -80,7 +80,6 @@ class App extends React.Component {
             </div>
           </form>
         </section>
-
         {
           _.map(findings, (value, key, collection) => {
             switch (value.typeItem) {
@@ -89,8 +88,6 @@ class App extends React.Component {
               default:
                 return ( <ItemFound finding={value} /> )
             }
-
-            // return ( <p>hola</p> )
           })
         }
       </div>
