@@ -8,7 +8,7 @@ const search = (req) => {
     const s = req.body.s
 
     var options = {
-      uri: `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${s}&apikey=${apiKey}`,
+      uri: `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${encodeURI(s)}&apikey=${apiKey}`,
       method: 'GET',
       json: true
     }
@@ -30,12 +30,15 @@ const parse = (data) => {
   }
 
   let result = {
-    header: `Alphavantage - ${data['Global Quote']['01. symbol']}`,
+    header: `${data['Global Quote']['01. symbol']} - Alphavantage`,
     typeItem: 'TABLE',
     content: {
       'caption': `Global Quote`,
       'header': [ 'Property', 'Value' ],
-      'data': data['Global Quote']
+      'data': data['Global Quote'],
+      'meta': {
+        'sorted': _.first(data['Global Quote'])
+      }
     }
   }
 

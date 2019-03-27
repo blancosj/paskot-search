@@ -8,7 +8,7 @@ const search = (req) => {
     const s = req.body.s;
 
     var options = {
-      uri: `http://www.omdbapi.com/?s=${s}&apikey=${apiKey}`,
+      uri: `http://www.omdbapi.com/?s=${encodeURI(s)}&apikey=${apiKey}`,
       method: 'GET',
       json: true
     }
@@ -25,12 +25,13 @@ const search = (req) => {
 
 const parse = (data) => _.map(data['Search'], (value, key, collection) => {
     return {
-      'header': `OMDB - ${value['Type']} `
-        + `<a href="https://www.imdb.com/title/${value['imdbID']}/">`
-        + `(${value['Year']}) <b>Title: ${value['Title']}</b>`
-        + `</a>`,
+      'header': `<a href="https://www.imdb.com/title/${value['imdbID']}/">`
+        + `${value['Title']} (${value['Year']}) ${value['Type']}</a> - OMDB`,
       'typeItem': 'DEFAULT',
-      'content': ''
+      'content': '',
+      'meta': {
+        'sorted': _.kebabCase(_.deburr(value['Title'].substring(0, 10))) + value['Year']
+      }
     }
   })
 

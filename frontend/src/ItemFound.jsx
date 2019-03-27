@@ -19,7 +19,7 @@ class ItemFound extends React.Component {
           <h3><div dangerouslySetInnerHTML={header}></div></h3>
         }
         { finding.content &&
-          <p><pre><div dangerouslySetInnerHTML={content}></div></pre></p>
+          <p><div dangerouslySetInnerHTML={content}></div></p>
         }
       </section>
     )

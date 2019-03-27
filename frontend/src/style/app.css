@@ -18,7 +18,6 @@
 
 div.search-input {
   display: flex;
-  margin-bottom: 15px;
 }
 
 .search-input > * {
@@ -36,4 +35,37 @@ div.search-input {
 
 .form-search {
 
+}
+
+.components-grid {
+  display: grid;
+  grid-column-gap: 1.4em;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+}
+
+.image-grid {
+  display: grid;
+  grid-template-rows: auto;
+  display: grid;
+  grid-gap: 1em;
+  grid-template-rows: auto;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(calc(var(--page-width) / 12), 1fr)
+  );
+}
+
+@media only screen and (min-width: 70em) {
+  .components-grid {
+    grid-template-columns: 3fr 9fr;
+  }
+}
+
+.summary-results {
+  margin: 5px 0px 15px 3px;
+}
+
+.summary-results > p {
+  font-size: 0.75em;
 }

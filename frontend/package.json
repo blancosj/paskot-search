@@ -5,10 +5,10 @@
     "node": "8.8.1"
   },
   "description": "",
-  "main": "./src/App.jsx",
+  "main": "./src/index.jsx",
   "scripts": {
     "start": "node ./dist/bundle.js",
-    "build": "webpack -p --config webpack.config.js",
+    "build": "webpack -p --config webpack.config.js --watch --progress",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "José Blanco <blancosj@gmail.com> (http://www.interactions.com/jblanco)",
@@ -24,6 +24,11 @@
     "html-webpack-plugin": "^3.2.0",
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
+    "react-redux": "^6.0.1",
+    "redux": "^4.0.1",
+    "redux-logger": "^3.0.6",
+    "redux-persist": "^5.10.0",
+    "redux-thunk": "^2.3.0",
     "style-loader": "^0.23.1",
     "terminal.css": "^0.6.6",
     "webpack": "^4.29.6",

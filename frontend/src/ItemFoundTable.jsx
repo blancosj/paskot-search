@@ -13,32 +13,30 @@ class ItemFoundTable extends React.Component {
 
     return (
       <section>
-        <pre>
-          <h3>{`${finding.header} - ${finding.content.caption}`}</h3>
-          <table>
-            <thead><tr>
-              {
-                _.map(finding.content.header, (value, key, collection) => {
-                  return (
-                    <th>{value}</th>
-                  )
-                })
-              }
-            </tr></thead>
-            <tbody>
-              {
-                _.map(finding.content.data, (value, key, collection) => {
-                  return (
-                    <tr>
-                      <td>{key}</td>
-                      <td>{value}</td>
-                    </tr>
-                  )
-                })
-              }
-            </tbody>
-          </table>
-        </pre>
+        <h3>{`${finding.header} - ${finding.content.caption}`}</h3>
+        <table>
+          <thead><tr>
+            {
+              _.map(finding.content.header, (value, key, collection) => {
+                return (
+                  <th>{value}</th>
+                )
+              })
+            }
+          </tr></thead>
+          <tbody>
+            {
+              _.map(finding.content.data, (value, key, collection) => {
+                return (
+                  <tr>
+                    <td>{key}</td>
+                    <td>{value}</td>
+                  </tr>
+                )
+              })
+            }
+          </tbody>
+        </table>
       </section>
     )
   }

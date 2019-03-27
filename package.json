@@ -8,7 +8,7 @@
   "main": "./dist/index.js",
   "scripts": {
     "start": "node ./dist/bundle.js",
-    "build-frontend": "(cd frontend && webpack -p --config webpack.config.js --watch --progress)",
+    "build-frontend": "(cd frontend && webpack -p --config webpack.config.js --progress)",
     "build": "webpack -p --config webpack.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -27,5 +27,8 @@
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0",
     "webpack-node-externals": "^1.7.2"
+  },
+  "dependencies": {
+    "react-redux": "^6.0.1"
   }
 }
