@@ -1,5 +1,6 @@
 {
   "name": "paskot",
+  "description": "paskot search",
   "version": "1.2.0",
   "engines": {
     "node": "8.8.1"
