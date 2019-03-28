@@ -18,7 +18,8 @@ class App extends React.Component {
   INITIAL_STATE = {
     findings: [],
     search: '',
-    filter: ''
+    filter: '',
+    q: ''
   }
 
   constructor(props) {

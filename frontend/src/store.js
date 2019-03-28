@@ -23,7 +23,8 @@ export const searchRequest = q => (dispatch, getState) => fetch('/q', {
     .then(json => {
       dispatch({
         type: 'SEARCH_SUCCESS',
-        results: json
+        results: json,
+        q
       })
     })
 
