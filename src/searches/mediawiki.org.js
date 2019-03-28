@@ -41,8 +41,9 @@ const parse = (data) => {
       'typeItem': 'DEFAULT',
       'content': previews[key],
       'meta': {
-        'sorted': 'wiki' + _.kebabCase(_.deburr(value.substring(0, 10)))
-      }
+        'sorted': '000 wiki' + _.kebabCase(_.deburr(value.substring(0, 10)))
+      },
+      'source': 'wiki'
     }}
   )
 }

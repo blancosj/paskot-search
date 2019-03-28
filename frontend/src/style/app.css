@@ -1,3 +1,8 @@
+
+html {
+    overflow-y: scroll;
+}
+
 #syno-nsc-ext-gen3 {
   padding-top: 20px;
 }

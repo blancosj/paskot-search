@@ -4,7 +4,8 @@ var _ = require('lodash')
 const items = [
   require('./mediawiki.org.js'),
   require('./alphavantage.co.js'),
-  require('./omdbapi.com.js')
+  require('./omdbapi.com.js'),
+  require('./github.com.js')
 ]
 
 const all = (req, res) => {

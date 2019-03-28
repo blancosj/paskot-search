@@ -7,7 +7,7 @@ import _ from 'lodash'
 import ItemFound from './ItemFound'
 import ItemFoundTable from './ItemFoundTable'
 import { Provider, connect } from 'react-redux'
-import { searchRequest } from './store'
+import { searchRequest, filterResults } from './store'
 
 class App extends React.Component {
 
@@ -17,7 +17,8 @@ class App extends React.Component {
 
   INITIAL_STATE = {
     findings: [],
-    search: ''
+    search: '',
+    filter: ''
   }
 
   constructor(props) {
@@ -45,10 +46,56 @@ class App extends React.Component {
       return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
   }
 
+  filterResults = filter => () => {
+    this.props.dispatch(filterResults(filter))
+  }
+
+  renderAside() {
+
+    const { search } = this.props
+    const { q, results, filter } = search
+
+    if (results.length === 0) {
+      return <div></div>;
+    }
+
+    let summary = _.mapValues(_.groupBy(results, 'source'), (value) => value.length)
+
+    if (!_.isEmpty(summary)) {
+      summary['all'] = results.length
+    }
+
+    return (
+      <div>
+        <h2>Summary Results</h2>
+        <nav>
+          <ul>
+            {
+              _.map(summary, (value, key, collection) => {
+                return (
+                  <li>
+                      <a href="#" onClick={::this.filterResults(key)}>
+                        {`${key}...${value}`}
+                        {filter === key && <span>&nbsp;&#x2691;</span>}
+                      </a>
+                  </li>
+                )
+              })
+            }
+          </ul>
+        </nav>
+      </div>
+    )
+  }
+
   render() {
 
     const { search } = this.props
-    const { q, results } = search
+    const { q, results, filter } = search
+
+    const filteredResults = _.findIndex(['all', ''], (o) => o === filter) > -1
+      ? results
+      : _.filter(results, (o) => o['source'] === filter)
 
     return (
       <div class="container">
@@ -57,31 +104,36 @@ class App extends React.Component {
             <div class="logo terminal-prompt"><a href="#" class="no-style">Search</a></div>
           </div>
         </div>
-        <main>
-          <section>
-            <form class="form-search" action="#" method="post" onSubmit={::this.handleOnSubmit}>
-              <div class="search-input">
-                <input id="search" name="search" type="text" ref={this.search} required="" minlength="2" autocomplete="off" autofocus="on"/>
-                <button class="btn btn-default" onClick={::this.handleOnClick}>Go</button>
-              </div>
-            </form>
-          </section>
-          <section class="summary-results">
-            { _.isEmpty(results) && !_.isEmpty(q) && <header><p>Nothing found.</p></header> }
-            { !_.isEmpty(results) && !_.isEmpty(q) && <p>{results.length} results for <ins>{q}</ins></p> }
-          </section>
-          {
-            _.map(results, (value, key, collection) => {
-              switch (value.typeItem) {
-                case 'TABLE':
-                  return ( <ItemFoundTable finding={value} /> )
-                default:
-                  return ( <ItemFound finding={value} /> )
-              }
-            })
-          }
-          { !_.isEmpty(results) && <hr/> }
-        </main>
+        <div class={!_.isEmpty(results) ? "components components-grid" : ""}>
+          <aside id="menu">
+            {::this.renderAside()}
+          </aside>
+          <main>
+            <section>
+              <form class="form-search" action="#" method="post" onSubmit={::this.handleOnSubmit}>
+                <div class="search-input">
+                  <input id="search" name="search" type="text" ref={this.search} required="" minlength="2" autocomplete="off" autofocus="on"/>
+                  <button class="btn btn-default" onClick={::this.handleOnClick}>Go</button>
+                </div>
+              </form>
+            </section>
+            <section class="summary-results">
+              { _.isEmpty(results) && !_.isEmpty(q) && <header><p>Nothing found.</p></header> }
+              { !_.isEmpty(results) && !_.isEmpty(q) && <p>{results.length} results for <ins>{q}</ins></p> }
+            </section>
+            {
+              _.map(filteredResults, (value, key, collection) => {
+                switch (value.typeItem) {
+                  case 'TABLE':
+                    return ( <ItemFoundTable finding={value} /> )
+                  default:
+                    return ( <ItemFound finding={value} /> )
+                }
+              })
+            }
+            { !_.isEmpty(results) && <hr/> }
+          </main>
+        </div>
       </div>
     )
   }

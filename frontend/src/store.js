@@ -6,6 +6,12 @@ import _ from 'lodash'
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
+export const filterResults = filter => (dispatch, getState) =>
+  dispatch({
+    type: 'FILTER_RESULTS',
+    filter
+  })
+
 export const searchRequest = q => (dispatch, getState) => fetch('/q', {
       method: 'POST',
       body: JSON.stringify({ s: q }),
@@ -17,16 +23,18 @@ export const searchRequest = q => (dispatch, getState) => fetch('/q', {
     .then(json => {
       dispatch({
         type: 'SEARCH_SUCCESS',
-        q,
         results: json
       })
     })
 
-export const search = (state = { q: '', results: [] }, action) => {
+export const search = (state = { q: '', results: [], filter: '' }, action) => {
   switch (action.type) {
     case 'SEARCH_SUCCESS':
       return {...state,
-        ...{ q: action.q, results: action.results }}
+        ...{ q: action.q, results: action.results, filter: '' }}
+    case 'FILTER_RESULTS':
+      return {...state,
+        ...{ filter: action.filter }}
     default:
       return state
   }

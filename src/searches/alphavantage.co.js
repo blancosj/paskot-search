@@ -39,7 +39,8 @@ const parse = (data) => {
       'meta': {
         'sorted': _.first(data['Global Quote'])
       }
-    }
+    },
+    'source': 'stock'
   }
 
   return result

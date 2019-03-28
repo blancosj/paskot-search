@@ -25,13 +25,14 @@ const search = (req) => {
 
 const parse = (data) => _.map(data['Search'], (value, key, collection) => {
     return {
-      'header': `<a href="https://www.imdb.com/title/${value['imdbID']}/">`
+      'header': `<a href="https://www.imdb.com/title/${value['imdbID']}">`
         + `${value['Title']} (${value['Year']}) ${value['Type']}</a> - OMDB`,
       'typeItem': 'DEFAULT',
       'content': '',
       'meta': {
         'sorted': _.kebabCase(_.deburr(value['Title'].substring(0, 10))) + value['Year']
-      }
+      },
+      'source': 'omdb'
     }
   })
 
