@@ -31,13 +31,20 @@ const search = (req) => {
 const parse = (data) => _.map(_.take(data['items'], LIMIT_RESULTS), (value, key, collection) => {
 
     const name = value['name'] ? value['name'] : ''
-    const desc = value['description'] ? value['name'] : 'Unknown'
+    const html_url = value['html_url']
+    const login = value['owner']['login']
+    let desc = value['description'] ? value['name'] : 'Unknown'
+
+    if (name === desc) {
+      desc = ''
+    }
+
     const stargazers_count = value['stargazers_count']
 
     return {
       'header': `<a href="${value['html_url']}">${name}, ${desc}</a> - Github`,
       'typeItem': 'DEFAULT',
-      'content': `<sup>&#x2605;</sup>(<ins>${stargazers_count.toLocaleString()}</ins>) ${desc}`,
+      'content': `<sup>&#x2605;</sup>(<ins>${stargazers_count.toLocaleString()}</ins>) <a href="${html_url}">&#64;${login}</a> ${desc}`,
       'meta': {
         'sorted': _.padStart(Number.MAX_SAFE_INTEGER - value['stargazers_count'], 10, '0') + ' ' + _.kebabCase(_.deburr(name.substring(0, 10)))
       },
