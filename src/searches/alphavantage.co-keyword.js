@@ -37,7 +37,7 @@ const parse = (data) => _.map(_.take(data['bestMatches'], LIMIT_RESULTS), (value
           'sorted': _.first(value['name'])
         }
       },
-      'source': 'stock'
+      'source': 'market'
     }
   })
 

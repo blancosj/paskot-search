@@ -40,7 +40,7 @@ const parse = (data) => {
         'sorted': _.first(data['Global Quote'])
       }
     },
-    'source': 'stock'
+    'source': 'market'
   }]
 
   return result
