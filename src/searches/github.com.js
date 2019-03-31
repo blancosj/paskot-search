@@ -42,7 +42,7 @@ const parse = (data) => _.map(_.take(data['items'], LIMIT_RESULTS), (value, key,
     const stargazers_count = value['stargazers_count']
 
     return {
-      'header': `<a href="${value['html_url']}">${name}, ${desc}</a> - Github`,
+      'header': `<a href="${value['html_url']}">${name} ${desc ? ', ' + desc : ''}</a> - Github`,
       'typeItem': 'DEFAULT',
       'content': `<sup>&#x2605;</sup>(<ins>${stargazers_count.toLocaleString()}</ins>) <a href="${html_url}">&#64;${login}</a> ${desc}`,
       'meta': {
