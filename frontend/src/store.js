@@ -20,9 +20,6 @@ export const filterResults = filter => (dispatch, getState) =>
     filter
   })
 
-
-// parserStream.on('data', data => console.log)
-
 export const searchRequest = q => (dispatch, getState) => {
 
   dispatch({
@@ -47,159 +44,34 @@ export const searchRequest = q => (dispatch, getState) => {
         pick({filter: 'findings'}),
         streamArray(),
         data => {
-          const item = data.value;
-
           dispatch({
             type: 'SEARCH_PROGRESS',
-            results: [ item ],
+            results: [ data.value ],
             q
           })
         }
       ])
 
-      // pipeline.write(reader)
+      pipeline.on('end', () => {
+        dispatch({
+          type: 'SEARCH_SUCCESS',
+          results: [],
+          q
+        })
+      })
 
       const processor = result => {
-
         if (result.done) {
-
-          dispatch({
-            type: 'SEARCH_SUCCESS',
-            results: [],
-            q
-          })
           return;
         }
 
         pipeline.write(result.value)
-
         reader.read().then(processor)
       }
 
       reader.read().then(processor)
-
-      console.debug(pipeline)
-
-      // const reader = body.getReader()
-      // const stream = new ReadableStream({
-      //     start(controller) {
-      //       return pump();
-      //       function pump() {
-      //         return reader.read().then(({ done, value }) => {
-      //           // When no more data needs to be consumed, close the stream
-      //           if (done) {
-      //               controller.close();
-      //               return;
-      //           }
-      //           // Enqueue the next data chunk into our target stream
-      //           controller.enqueue(value);
-      //           return pump();
-      //         });
-      //       }
-      //     }
-      //   })
-
     })
   }
-
-
-    // let getItem = (item, a) => {
-    //
-    //   console.log(item)
-    //
-    //   dispatch({
-    //     type: 'SEARCH_SUCCESS',
-    //     results: item,
-    //     q
-    //   })
-    // }
-    //
-    // let stream = JSONStream.parse('findings.*')
-    //   .on('data', getItem)
-    //   .on('end', () => console.log('FIN'))
-    //
-    // // stream.autoDestroy = false
-    //
-    // let process = ({ result, reader }) => {
-    //   if (result.done) {
-    //     return;
-    //   }
-    //
-    //   stream.write(result.value)
-    //
-    //   reader.read().then((result) => process({ result, reader }))
-    // }
-
-
-
-    // // .then(reader => reader.read())
-    // .then(reader => {
-    //   // reader.read().then((result) => process({ result, reader }))
-    //
-    //   const r = reader
-    //
-    //   const pipeline = chain([
-    //     reader,
-    //     parser(),
-    //     pick({filter: 'findings'}),
-    //     streamValues(),
-    //     data => {
-    //       const item = data.value;
-    //
-    //       dispatch({
-    //         type: 'SEARCH_SUCCESS',
-    //         results: item,
-    //         q
-    //       })
-    //     }
-    //   ])
-
-
-
-    // })
-    //   .then(({ value }) => {
-    //     // var chunk = new TextDecoder('utf-8').decode(value)
-    //     // console.log(chunk)
-    //     stream.write(value)
-    //
-    //     reader.read()
-    //   })
-    //
-    // )
-
-      // const reader = response.body.getReader();
-      //
-      // reader.read().then(function processText({ done, value }) {
-      //
-      //   if (done) {
-      //     console.log('Stream complete')
-      //     return;
-      //   }
-      //   // var chunk = new TextDecoder('utf-8').decode(value)
-      //   // console.log(chunk)
-      //
-      //   stream.write(value)
-      //
-      //   return reader.read().then(processText)
-      // })
-
-  // }
-
-// export const searchRequest2 = q => (dispatch, getState) => fetch('/q', {
-//       method: 'POST',
-//       body: JSON.stringify({ s: q }),
-//       headers: {
-//         'Content-Type': 'application/json'
-//       }
-//     })
-//     .then(res => res.json())
-//     .then(json => {
-//       dispatch({
-//         type: 'SEARCH_SUCCESS',
-//         results: json,
-//         q
-//       })
-//     })
 
 export const search = (state = { q: '', results: [], filter: '', searching: false }, action) => {
   switch (action.type) {
