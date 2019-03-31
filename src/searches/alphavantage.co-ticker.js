@@ -29,7 +29,7 @@ const parse = (data) => {
     return []
   }
 
-  let result = {
+  let result = [{
     header: `${data['Global Quote']['01. symbol']} - Alphavantage`,
     typeItem: 'TABLE',
     content: {
@@ -41,9 +41,9 @@ const parse = (data) => {
       }
     },
     'source': 'stock'
-  }
+  }]
 
   return result
 }
 
-module.exports = search;
+module.exports = search

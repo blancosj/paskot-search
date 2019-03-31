@@ -4,8 +4,8 @@ var _ = require('lodash')
 const search = (req) => {
   return new Promise((resolve, reject) => {
 
-    const apiKey = '24191a48';
-    const s = req.body.s;
+    const apiKey = '24191a48'
+    const s = req.body.s
 
     var options = {
       uri: `http://www.omdbapi.com/?s=${encodeURI(s)}&apikey=${apiKey}`,
@@ -36,4 +36,4 @@ const parse = (data) => _.map(data['Search'], (value, key, collection) => {
     }
   })
 
-module.exports = search;
+module.exports = search

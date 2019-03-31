@@ -40,7 +40,8 @@ class App extends React.Component {
   }
 
   handleOnClick(event) {
-    this.doSearch(this.search.current.value);
+    // this.doSearch(this.search.current.value);
+    // onClick={::this.handleOnClick}
   }
 
   encodeHTML(s) {
@@ -60,7 +61,8 @@ class App extends React.Component {
       return <div></div>;
     }
 
-    let summary = _.mapValues(_.groupBy(results, 'source'), (value) => value.length)
+    let summary = _.mapValues(
+      _.groupBy(results, 'source'), (value) => value.length)
 
     if (!_.isEmpty(summary)) {
       summary['all'] = results.length
@@ -92,7 +94,7 @@ class App extends React.Component {
   render() {
 
     const { search } = this.props
-    const { q, results, filter } = search
+    const { q, results, filter, searching } = search
 
     const filteredResults = _.findIndex(['all', ''], (o) => o === filter) > -1
       ? results
@@ -114,13 +116,14 @@ class App extends React.Component {
               <form class="form-search" action="#" method="post" onSubmit={::this.handleOnSubmit}>
                 <div class="search-input">
                   <input id="search" name="search" type="text" ref={this.search} required="" minlength="2" autocomplete="off" autofocus="on"/>
-                  <button class="btn btn-default" onClick={::this.handleOnClick}>Go</button>
+                  <button class="btn btn-default">Go</button>
                 </div>
               </form>
             </section>
             <section class="summary-results">
-              { _.isEmpty(results) && !_.isEmpty(q) && <header><p>Nothing found.</p></header> }
-              { !_.isEmpty(results) && !_.isEmpty(q) && <p>{results.length} results for <ins>{q}</ins></p> }
+              { searching && <header><p>...</p></header> }
+              { !searching && _.isEmpty(results) && !_.isEmpty(q) && <header><p>Nothing found.</p></header> }
+              { !searching && !_.isEmpty(results) && !_.isEmpty(q) && <p>{results.length} results for <ins>{q}</ins></p> }
             </section>
             {
               _.map(filteredResults, (value, key, collection) => {

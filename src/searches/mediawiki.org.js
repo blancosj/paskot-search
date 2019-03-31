@@ -48,4 +48,4 @@ const parse = (data) => {
   )
 }
 
-module.exports = search;
+module.exports = search

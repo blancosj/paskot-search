@@ -8,7 +8,8 @@
   "main": "./src/index.jsx",
   "scripts": {
     "start": "node ./dist/bundle.js",
-    "build": "webpack -p --config webpack.config.js --watch --progress",
+    "watch": "webpack -p --config webpack.config.js --watch --progress",
+    "build": "webpack -p --config webpack.config.js --progress",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "José Blanco <blancosj@gmail.com> (http://www.interactions.com/jblanco)",
@@ -19,11 +20,12 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "bluebird": "^3.5.3",
     "css-loader": "^2.1.1",
     "extract-text-webpack-plugin": "^3.0.2",
     "html-webpack-plugin": "^3.2.0",
-    "react": "^16.8.5",
-    "react-dom": "^16.8.5",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "react-redux": "^6.0.1",
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
@@ -34,5 +36,8 @@
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "highland": "^3.0.0-beta.9",
+    "stream-json": "^1.2.1"
+  }
 }

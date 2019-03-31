@@ -6,8 +6,8 @@ const LIMIT_RESULTS = 10
 const search = (req) => {
   return new Promise((resolve, reject) => {
 
-    const apiKey = '24191a48';
-    const s = req.body.s;
+    const apiKey = '24191a48'
+    const s = req.body.s
 
     var options = {
       uri: `https://api.github.com/search/repositories?q=${encodeURI(s)}&sort=stars&order=desc`,
@@ -52,4 +52,4 @@ const parse = (data) => _.map(_.take(data['items'], LIMIT_RESULTS), (value, key,
     }
   })
 
-module.exports = search;
+module.exports = search
