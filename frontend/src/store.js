@@ -84,8 +84,7 @@ export const search = (state = { q: '', results: [], filter: '', searching: fals
     case 'SEARCH_PROGRESS':
       return {...state,
         ...{
-          results: state.results.concat(_.filter(action.results, _.isObject)),
-          searching: true
+          results: state.results.concat(_.filter(action.results, _.isObject))
         }
       }
     case 'SEARCH_SUCCESS':
