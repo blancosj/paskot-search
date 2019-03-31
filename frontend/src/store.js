@@ -53,15 +53,12 @@ export const searchRequest = q => (dispatch, getState) => {
       ])
 
       pipeline.on('end', () => {
-        dispatch({
-          type: 'SEARCH_SUCCESS',
-          results: [],
-          q
-        })
+        dispatch({ type: 'SEARCH_SUCCESS' })
       })
 
       const processor = result => {
         if (result.done) {
+          pipeline.emit('end')
           return;
         }
 
