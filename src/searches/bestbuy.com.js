@@ -35,7 +35,7 @@ const parse = (data) => _.map(_.take(data['products'], LIMIT_RESULTS), (value, k
     const sku = value['sku']
     const name = value['name']
     const salePrice = value['salePrice']
-    const longDescription = value['longDescription']
+    const longDescription = value['longDescription'] ? value['longDescription'] : ''
     const url = calculateProductUrl(name, sku)
 
     return {
