@@ -118,7 +118,7 @@ const initialState = {}
 const enhancers = []
 const middleware = [thunk]
 
-if (NODE_ENV === 'production') {
+if (NODE_ENV !== 'production') {
   middleware.push(createLogger())
 }
 
