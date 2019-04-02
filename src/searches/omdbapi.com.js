@@ -32,7 +32,7 @@ const parse = (data) => _.map(data['Search'], (value, key, collection) => {
       'meta': {
         'sorted': _.kebabCase(_.deburr(value['Title'].substring(0, 10))) + value['Year']
       },
-      'source': 'omdb'
+      'source': 'movies'
     }
   })
 
