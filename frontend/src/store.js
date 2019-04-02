@@ -118,9 +118,9 @@ const initialState = {}
 const enhancers = []
 const middleware = [thunk]
 
-if (NODE_LOG_MODE === 'DEBUG') {
-  middleware.push(createLogger())
-}
+// if (NODE_LOG_MODE === 'DEBUG') {
+//   middleware.push(createLogger())
+// }
 
 const composedEnhancers = compose(
   applyMiddleware(...middleware),
