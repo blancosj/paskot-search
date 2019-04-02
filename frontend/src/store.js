@@ -118,7 +118,7 @@ const initialState = {}
 const enhancers = []
 const middleware = [thunk]
 
-if (process.env.NODE_ENV !== 'production') {
+if (NODE_LOG_MODE === 'DEBUG') {
   middleware.push(createLogger())
 }
 
