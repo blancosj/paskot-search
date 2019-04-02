@@ -10,17 +10,53 @@ const items = [
   require('./alphavantage.co-ticker.js'),
   require('./omdbapi.com.js'),
   require('./github.com.js'),
-  require('./bestbuy.com.js')
+  require('./bestbuy.com.js'),
+  require('./bbcnews.rss-sports.js')
 ]
 
+const all3 = (req, res) => {
+
+  res.setHeader('Connection', 'Transfer-Encoding')
+  res.setHeader('Content-Type', 'application/json')
+  res.setHeader('Transfer-Encoding', 'chunked')
+  res.writeHead(200)
+
+  res.write('{"findings":[')
+
+  return Promise
+    .map(items, source => source(req)
+      .then(x => {
+        res.write(JSON.stringify(x).concat(','))
+        // process.stdout.write(JSON.stringify(x))
+        // JSON.stringify(x).each(value => res.write(value.concat(',')))
+      })
+      // .each(value => res.write(value.concat(',')))
+      , { concurrency: 6 })
+    // .each(result => _.map(result, x => JSON.stringify(x))
+    //   .forEach(x => {
+    //     process.stdout.write("SENT!")
+    //     return res.write(x.concat(','))
+    //   })
+    // )
+    .then(() => res.end('null]}'))
+}
+
 const all2 = (req, res) => {
+
+  res.setHeader('Connection', 'Transfer-Encoding')
+  res.setHeader('Content-Type', 'application/json')
+  res.setHeader('Transfer-Encoding', 'chunked')
+  res.writeHead(200)
 
   res.write('{"findings":[')
 
   return Promise
     .map(items, source => source(req), { concurrency: 6 })
     .each(result => _.map(result, x => JSON.stringify(x))
-      .forEach(x => res.write(x.concat(',')))
+      .forEach(x => {
+        process.stdout.write("SENT!")
+        return res.write(x.concat(','))
+      })
     )
     .then(() => res.end('null}'))
 }
@@ -43,4 +79,4 @@ const all = (req, res) => {
     .then((result) => { res.send(_.sortBy(result, (i) => _.get(i, 'meta.sorted', 'Z'))) })
 }
 
-module.exports = all2;
+module.exports = all3;

@@ -1,6 +1,10 @@
 
 html {
-    overflow-y: scroll;
+  overflow-y: scroll;
+}
+
+body {
+  /* background-color: gray; */
 }
 
 #syno-nsc-ext-gen3 {
@@ -8,17 +12,17 @@ html {
 }
 
 #search-main-logo::after {
-    content: "";
-    -webkit-animation: cursor .8s infinite;
-    animation: cursor .8s infinite;
-    background: var(--secondary-color);
-    border-radius: 0;
-    display: inline-block;
-    height: 1em;
-    margin-left: .2em;
-    width: 3px;
-    bottom: -2px;
-    position: relative;
+  content: "";
+  -webkit-animation: cursor .8s infinite;
+  animation: cursor .8s infinite;
+  background: var(--secondary-color);
+  border-radius: 0;
+  display: inline-block;
+  height: 1em;
+  margin-left: .2em;
+  width: 3px;
+  bottom: -2px;
+  position: relative;
 }
 
 div.search-input {

@@ -82,9 +82,15 @@ export const search = (state = { q: '', results: [], filter: '', searching: fals
         }
       }
     case 'SEARCH_PROGRESS':
+
+      if (!_.isArray(action.results)) {
+        return state
+      }
+
       return {...state,
         ...{
-          results: state.results.concat(_.filter(action.results, _.isObject))
+          results: state.results
+            .concat(_.filter(_.flattenDeep(action.results), (x) => !_.isEmpty(x)))
         }
       }
     case 'SEARCH_SUCCESS':

@@ -33,7 +33,7 @@ const parse = (data) => _.map(_.take(data['items'], LIMIT_RESULTS), (value, key,
     const name = value['name'] ? value['name'] : ''
     const html_url = value['html_url']
     const login = value['owner']['login']
-    let desc = value['description'] ? value['name'] : 'Unknown'
+    let desc = value['description'] ? value['description'] : 'Unknown'
 
     if (name === desc) {
       desc = ''
@@ -42,9 +42,12 @@ const parse = (data) => _.map(_.take(data['items'], LIMIT_RESULTS), (value, key,
     const stargazers_count = value['stargazers_count']
 
     return {
-      'header': `<a href="${value['html_url']}">${name} ${desc ? ', ' + desc : ''}</a> - Github`,
+      'header': `<a href="${value['html_url']}">${name}</a>`
+        + ` <a href="${html_url}">&#64;${login}</a>`
+        + ` <sup>&#x2605;</sup>(<ins>${stargazers_count.toLocaleString()}</ins>)`
+        + ` - Github`,
       'typeItem': 'DEFAULT',
-      'content': `<sup>&#x2605;</sup>(<ins>${stargazers_count.toLocaleString()}</ins>) <a href="${html_url}">&#64;${login}</a> ${desc}`,
+      'content': desc,
       'meta': {
         'sorted': _.padStart(Number.MAX_SAFE_INTEGER - value['stargazers_count'], 10, '0') + ' ' + _.kebabCase(_.deburr(name.substring(0, 10)))
       },
