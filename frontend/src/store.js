@@ -7,12 +7,12 @@ import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import JSONStream from 'JSONStream'
 
-const {chain}  = require('stream-chain')
-const {parser} = require('stream-json')
-const {pick}   = require('stream-json/filters/Pick')
-const {ignore} = require('stream-json/filters/Ignore')
-const {streamValues} = require('stream-json/streamers/StreamValues')
-const {streamArray } = require('stream-json/streamers/StreamArray')
+const { chain }  = require('stream-chain')
+const { parser } = require('stream-json')
+const { pick }   = require('stream-json/filters/Pick')
+const { ignore } = require('stream-json/filters/Ignore')
+const { streamValues } = require('stream-json/streamers/StreamValues')
+const { streamArray } = require('stream-json/streamers/StreamArray')
 
 export const filterResults = filter => (dispatch, getState) =>
   dispatch({
@@ -116,7 +116,11 @@ const persistedReducer = persistReducer(persistConfig, combineReducers({ search 
 
 const initialState = {}
 const enhancers = []
-const middleware = [thunk, createLogger()]
+const middleware = [thunk]
+
+if (NODE_ENV === 'production') {
+  middleware.push(createLogger())
+}
 
 const composedEnhancers = compose(
   applyMiddleware(...middleware),

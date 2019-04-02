@@ -5,6 +5,13 @@ const TerserPlugin = require('terser-webpack-plugin')
 
 module.exports = merge(baseConfig, {
   plugins: [
+    new webpack.DefinePlugin({
+      process: {
+        env: {
+          NODE_ENV: JSON.stringify('production')
+        }
+      }
+    })
   ],
   performance: {
     maxEntrypointSize: 400000
