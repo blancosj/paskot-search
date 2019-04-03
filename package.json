@@ -35,6 +35,7 @@
   },
   "dependencies": {
     "highland": "^3.0.0-beta.9",
+    "moment": "^2.24.0",
     "react-redux": "^6.0.1",
     "xml-stream": "^0.4.5",
     "xml2js": "^0.4.19"

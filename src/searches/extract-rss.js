@@ -1,6 +1,7 @@
 var request = require('request')
 var _ = require('lodash')
 var Stream = require('stream')
+var moment = require('moment')
 
 var XmlStream = require('xml-stream')
 
@@ -45,8 +46,12 @@ const match = (data, search) =>
   _.intersectionBy(_.words(data['title']), _.words(search), _.lowerCase)
 
 const parse = (source, titleTail) => data => _.map(data, (value, key, collection) => {
+
+    const pubDate = moment(value['pubDate']).format('ll')
+
     return {
-      'header': `<a href="${value['link']}">${value['title']}</a> - ${titleTail}`,
+      'header': `<a href="${value['link']}">${value['title']}</a> `
+        + `<small>${pubDate}</small> - ${titleTail}`,
       'typeItem': 'DEFAULT',
       'content': `${value['description']}`,
       'meta': {
