@@ -33,10 +33,10 @@ const parse = (data) => _.map(_.take(data['bestMatches'], LIMIT_RESULTS), (value
         'caption': `Company Quote`,
         'header': [ 'Property', 'Value' ],
         'data': value,
-        'meta': {
-          'sorted': _.first(value['name'])
-        }
       },
+      'meta': {
+        'sorted': _.first(value['name'])
+      },      
       'source': 'market'
     }
   })

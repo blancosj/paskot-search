@@ -36,10 +36,10 @@ const parse = (data) => {
       'caption': `Global Quote`,
       'header': [ 'Property', 'Value' ],
       'data': data['Global Quote'],
-      'meta': {
-        'sorted': _.first(data['Global Quote'])
-      }
     },
+    'meta': {
+      'sorted': _.first(data['Global Quote'])
+    },    
     'source': 'market'
   }]
 

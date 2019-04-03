@@ -47,15 +47,19 @@ const match = (data, search) =>
 
 const parse = (source, titleTail) => data => _.map(data, (value, key, collection) => {
 
+    let title = value['title']
+
+    _.each(value['m'], i => title = title.replace(i, `<code>${i}</code>`))
+
     const pubDate = moment(value['pubDate']).format('ll')
 
     return {
-      'header': `<a href="${value['link']}">${value['title']}</a> `
+      'header': `<a href="${value['link']}">${title}</a> `
         + `<small>${pubDate} - ${titleTail}</small>`,
       'typeItem': 'DEFAULT',
       'content': `${value['description']}`,
       'meta': {
-        'sorted': _.padStart(value['m'].length, 10, '0')
+        'sorted': _.padStart(Number.MAX_SAFE_INTEGER - value['m'].length, 10, '0')
           + _.kebabCase(_.deburr(value['title'].substring(0, 10)))
       },
       'source': source

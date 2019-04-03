@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(express.static('public'));
 
-var server_port = process.env.YOUR_PORT || process.env.PORT || 8081;
+var server_port = process.env.YOUR_PORT || process.env.PORT || 8082;
 var server_host = process.env.YOUR_HOST || '0.0.0.0';
 
 app.post('/q', search);

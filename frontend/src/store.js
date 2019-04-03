@@ -87,10 +87,14 @@ export const search = (state = { q: '', results: [], filter: '', searching: fals
         return state
       }
 
+      const results = state.results
+        .concat(_.filter(_.flattenDeep(action.results), (x) => !_.isEmpty(x)))
+
+      const sortedResults = _.sortBy(results, i => i.meta.sorted)
+
       return {...state,
         ...{
-          results: state.results
-            .concat(_.filter(_.flattenDeep(action.results), (x) => !_.isEmpty(x)))
+          results: sortedResults
         }
       }
     case 'SEARCH_SUCCESS':
