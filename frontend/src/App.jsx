@@ -46,7 +46,7 @@ class App extends React.Component {
 
   ads() {
     return (
-      <div>
+      <section>
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         <ins class="adsbygoogle"
           style={{ display: "block" }}
@@ -57,7 +57,7 @@ class App extends React.Component {
         <script>
              (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
-      </div>
+      </section>
     )
   }
 
