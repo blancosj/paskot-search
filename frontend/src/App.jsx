@@ -44,6 +44,23 @@ class App extends React.Component {
     // onClick={::this.handleOnClick}
   }
 
+  ads() {
+    return (
+      <div>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <ins class="adsbygoogle"
+          style={{ display: "block" }}
+          data-ad-format="fluid"
+          data-ad-layout-key="-fb+5w+4e-db+86"
+          data-ad-client="ca-pub-7090864477039814"
+          data-ad-slot="8697644025"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+      </div>
+    )
+  }
+
   encodeHTML(s) {
       return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
   }
@@ -135,6 +152,7 @@ class App extends React.Component {
                 }
               })
             }
+            { this.ads() }
             { !_.isEmpty(results) && <hr/> }
           </main>
         </div>
