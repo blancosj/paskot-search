@@ -51,7 +51,7 @@ const parse = (source, titleTail) => data => _.map(data, (value, key, collection
 
     return {
       'header': `<a href="${value['link']}">${value['title']}</a> `
-        + `<small>${pubDate}</small> - ${titleTail}`,
+        + `<small>${pubDate} - ${titleTail}</small>`,
       'typeItem': 'DEFAULT',
       'content': `${value['description']}`,
       'meta': {

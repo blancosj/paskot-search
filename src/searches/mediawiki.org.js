@@ -37,7 +37,7 @@ const parse = (data) => {
 
   return _.map(keys, (value, key, collection) => {
     return {
-      'header': `<a href="${links[key]}">${value}</a> - Wikipedia`,
+      'header': `<a href="${links[key]}">${value}</a> <small>- Wikipedia</small>`,
       'typeItem': 'DEFAULT',
       'content': previews[key],
       'meta': {

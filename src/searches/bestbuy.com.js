@@ -39,7 +39,7 @@ const parse = (data) => _.map(_.take(data['products'], LIMIT_RESULTS), (value, k
     const url = calculateProductUrl(name, sku)
 
     return {
-      'header': `<a href="${url}">${name} - &#xFF04;${salePrice}</a> - BestBuy`,
+      'header': `<a href="${url}">${name} - &#xFF04;${salePrice}</a> <small>- BestBuy</small>`,
       'typeItem': 'DEFAULT',
       'content': `${longDescription}`,
       'meta': {

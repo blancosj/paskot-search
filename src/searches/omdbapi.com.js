@@ -26,7 +26,7 @@ const search = (req) => {
 const parse = (data) => _.map(data['Search'], (value, key, collection) => {
     return {
       'header': `<a href="https://www.imdb.com/title/${value['imdbID']}">`
-        + `${value['Title']} (${value['Year']}) ${value['Type']}</a> - OMDB`,
+        + `${value['Title']} (${value['Year']}) ${value['Type']}</a> <small>- OMDB</small>`,
       'typeItem': 'DEFAULT',
       'content': '',
       'meta': {
