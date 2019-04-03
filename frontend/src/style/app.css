@@ -72,9 +72,23 @@ div.search-input {
 }
 
 .summary-results {
-  margin: 5px 0px 15px 3px;
+  clear: left;
+  margin: 5px 0px 5px 0px;
 }
 
-.summary-results > p {
+.summary-results > header {
   font-size: 0.75em;
+}
+
+.terminal-search {
+  width: 100%;
+  margin-left: 10px;
+}
+
+section.result img {
+  margin-bottom: 5px;
+}
+
+.terminal-container {
+  margin-top: 5px;
 }

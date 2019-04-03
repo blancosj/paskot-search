@@ -123,38 +123,40 @@ class App extends React.Component {
           <div class="terminal-logo">
             <div class="logo terminal-prompt"><a href="#" class="no-style">Search</a></div>
           </div>
+          <div class="terminal-search">
+            <form class="form-search" action="#" method="post" onSubmit={::this.handleOnSubmit}>
+              <div class="search-input">
+                <input id="search" name="search" type="text" ref={this.search} required="" minlength="2" autocomplete="off" autofocus="on"/>
+                <button class="btn btn-default">Go</button>
+              </div>
+            </form>
+          </div>
         </div>
-        <div class={!_.isEmpty(results) ? "components components-grid" : ""}>
-          <aside id="menu">
-            {::this.renderAside()}
-          </aside>
-          <main>
-            <section>
-              <form class="form-search" action="#" method="post" onSubmit={::this.handleOnSubmit}>
-                <div class="search-input">
-                  <input id="search" name="search" type="text" ref={this.search} required="" minlength="2" autocomplete="off" autofocus="on"/>
-                  <button class="btn btn-default">Go</button>
-                </div>
-              </form>
-            </section>
-            <section class="summary-results">
-              { searching && <header><p>...</p></header> }
-              { !searching && _.isEmpty(results) && !_.isEmpty(q) && <header><p>Nothing found.</p></header> }
-              { !searching && !_.isEmpty(results) && !_.isEmpty(q) && <p>{results.length} results for <ins>{q}</ins></p> }
-            </section>
-            {
-              _.map(filteredResults, (value, key, collection) => {
-                switch (value.typeItem) {
-                  case 'TABLE':
-                    return ( <ItemFoundTable finding={value} /> )
-                  default:
-                    return ( <ItemFound finding={value} /> )
-                }
-              })
-            }
-            { this.ads() }
-            { !_.isEmpty(results) && <hr/> }
-          </main>
+        <div class="container terminal-container">
+          <div class={!_.isEmpty(results) ? "components components-grid" : ""}>
+            <aside id="menu">
+              {::this.renderAside()}
+            </aside>
+            <main>
+              <div class="summary-results">
+                { searching && <header>...</header> }
+                { !searching && _.isEmpty(results) && !_.isEmpty(q) && <header>Nothing found.</header> }
+                { !searching && !_.isEmpty(results) && !_.isEmpty(q) && <header>{results.length} results for <ins>{q}</ins></header> }
+              </div>
+              {
+                _.map(filteredResults, (value, key, collection) => {
+                  switch (value.typeItem) {
+                    case 'TABLE':
+                      return ( <ItemFoundTable finding={value} /> )
+                    default:
+                      return ( <ItemFound finding={value} /> )
+                  }
+                })
+              }
+              { this.ads() }
+              { !_.isEmpty(results) && <hr/> }
+            </main>
+          </div>
         </div>
       </div>
     )

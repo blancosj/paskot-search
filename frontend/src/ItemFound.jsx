@@ -14,7 +14,7 @@ class ItemFound extends React.Component {
     const content = {__html: finding.content}
 
     return (
-      <section>
+      <section class="result">
         { finding.header &&
           <h3><div dangerouslySetInnerHTML={header}></div></h3>
         }
