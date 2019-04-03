@@ -30,7 +30,10 @@ const search = (url, source, titleTail) => (req) => {
 
     pass.on('end', () => {
       resolve(
-        parse(source, titleTail)(result.filter(item => match(item, s)))
+        parse(source, titleTail)(result
+          .map(item => _.assign(item, { m: match(item, s) }))
+          .filter(item => item.m.length > 0)
+        )
       )
     })
 
@@ -39,7 +42,7 @@ const search = (url, source, titleTail) => (req) => {
 }
 
 const match = (data, search) =>
-  !_.isEmpty(_.intersectionBy(_.words(data['title']), _.words(search), _.lowerCase))
+  _.intersectionBy(_.words(data['title']), _.words(search), _.lowerCase)
 
 const parse = (source, titleTail) => data => _.map(data, (value, key, collection) => {
     return {
@@ -47,7 +50,8 @@ const parse = (source, titleTail) => data => _.map(data, (value, key, collection
       'typeItem': 'DEFAULT',
       'content': `${value['description']}`,
       'meta': {
-        'sorted': _.kebabCase(_.deburr(value['title'].substring(0, 10)))
+        'sorted': _.padStart(value['m'].length, 10, '0')
+          + _.kebabCase(_.deburr(value['title'].substring(0, 10)))
       },
       'source': source
     }

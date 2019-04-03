@@ -49,7 +49,7 @@ const parse = (data) => _.map(_.take(data['items'], LIMIT_RESULTS), (value, key,
       'typeItem': 'DEFAULT',
       'content': desc,
       'meta': {
-        'sorted': _.padStart(Number.MAX_SAFE_INTEGER - value['stargazers_count'], 10, '0') + ' ' + _.kebabCase(_.deburr(name.substring(0, 10)))
+        'sorted': _.padStart(Number.MAX_SAFE_INTEGER - value['stargazers_count'], 10, '0') + _.kebabCase(_.deburr(name.substring(0, 10)))
       },
       'source': 'github'
     }
