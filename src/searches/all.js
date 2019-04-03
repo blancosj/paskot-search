@@ -11,7 +11,19 @@ const items = [
   require('./omdbapi.com.js'),
   require('./github.com.js'),
   require('./bestbuy.com.js'),
-  require('./bbcnews.rss-sports.js')
+  // require('./bbcnews.rss-sports.js'),
+  require('./extract-rss.js')
+    ('http://feeds.bbci.co.uk/sport/rss.xml', 'news', 'BBC News Sports'),
+  require('./extract-rss.js')
+    ('https://www.cnet.com/rss/news/', 'news', 'CNET News'),
+  require('./extract-rss.js')
+    ('http://www.espnfc.com/rss', 'news', 'ESPN FC News'),
+  require('./extract-rss.js')
+    ('http://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml', 'news', 'New York Times News'),
+  require('./extract-rss.js')
+    ('http://rss.cnn.com/rss/edition_world.rss', 'news', 'CNN News'),
+  require('./extract-rss.js')
+    ('https://www.npr.org/rss/rss.php', 'news', 'NPR Stories'),    
 ]
 
 const all3 = (req, res) => {
