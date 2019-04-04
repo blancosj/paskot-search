@@ -40,8 +40,7 @@ class App extends React.Component {
   }
 
   handleOnClick(event) {
-    // this.doSearch(this.search.current.value);
-    // onClick={::this.handleOnClick}
+
   }
 
   ads() {

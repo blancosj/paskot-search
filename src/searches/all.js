@@ -22,7 +22,11 @@ const items = [
   require('./extract-rss.js')
     ('http://rss.cnn.com/rss/edition_world.rss', 'news', 'CNN News'),
   require('./extract-rss.js')
-    ('https://www.npr.org/rss/rss.php', 'news', 'NPR Stories')
+    ('https://www.npr.org/rss/rss.php', 'news', 'NPR Stories'),
+  require('./extract-rss.js')
+    ('http://news.nationalgeographic.com/index.rss', 'news', 'National Geographic')    
+
+
 ]
 
 const all = (req, res) => {
