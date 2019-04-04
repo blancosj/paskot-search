@@ -120,14 +120,11 @@ class App extends React.Component {
     return (
       <div class="container">
         <div class="terminal-nav">
-          <div class="terminal-logo">
-            <div class="logo terminal-prompt"><a href="#" class="no-style">Search</a></div>
-          </div>
           <div class="terminal-search">
             <form class="form-search" action="#" method="post" onSubmit={::this.handleOnSubmit}>
               <div class="search-input">
                 <input id="search" name="search" type="text" ref={this.search} required="" minlength="2" autocomplete="off" autofocus="on"/>
-                <button class="btn btn-default">Go</button>
+                <button class="btn btn-default">Search</button>
               </div>
             </form>
           </div>
