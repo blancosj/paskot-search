@@ -6,6 +6,7 @@ import './style/app.css'
 import _ from 'lodash'
 import ItemFound from './ItemFound'
 import ItemFoundTable from './ItemFoundTable'
+import ItemFoundImage from './ItemFoundImage'
 import { Provider, connect } from 'react-redux'
 import { searchRequest, filterResults } from './store'
 
@@ -142,6 +143,8 @@ class App extends React.Component {
               {
                 _.map(filteredResults, (value, key, collection) => {
                   switch (value.typeItem) {
+                    case 'IMAGE':
+                      return ( <ItemFoundImage finding={value} /> )
                     case 'TABLE':
                       return ( <ItemFoundTable finding={value} /> )
                     default:

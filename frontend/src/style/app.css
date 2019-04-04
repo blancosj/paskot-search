@@ -85,8 +85,12 @@ div.search-input {
   margin-left: 10px;
 }
 
-section.result img {
-  margin-bottom: 5px;
+section.result .terminal-card {
+  margin-bottom: 10px;
+}
+
+section.result .terminal-card figure {
+  padding: 5px 5px 0px 5px;
 }
 
 .terminal-container {
