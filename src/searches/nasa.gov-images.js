@@ -8,6 +8,10 @@ const search = (req) => {
 
     const s = req.body.s
 
+    if (!s) {
+      resolve([])
+    }
+
     var options = {
       uri: `https://images-api.nasa.gov/search?q=${encodeURI(s)}&media_type=image`,
       method: 'GET',
@@ -16,9 +20,9 @@ const search = (req) => {
 
     request(options, (err2, res2, body2) => {
       if (err2) {
-        resolve([]);
+        resolve([])
       } else {
-        resolve(parse(body2));
+        resolve(parse(body2))
       }
     })
   })
