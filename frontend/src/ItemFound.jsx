@@ -5,11 +5,12 @@ class ItemFound extends React.Component {
 
   static propTypes = {
     finding: PropTypes.any.isRequired,
+    Ads: PropTypes.element
   }
 
   render() {
 
-    const { finding } = this.props
+    const { finding, Ads } = this.props
     const header = {__html: finding.header}
     const content = {__html: finding.content}
 
@@ -21,6 +22,7 @@ class ItemFound extends React.Component {
         { finding.content &&
           <p><div dangerouslySetInnerHTML={content}></div></p>
         }
+        { Ads && <Ads/> }
       </section>
     )
   }

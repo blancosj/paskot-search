@@ -5,11 +5,12 @@ class ItemFoundTable extends React.Component {
 
   static propTypes = {
     finding: PropTypes.any.isRequired,
+    Ads: PropTypes.element
   }
 
   render() {
 
-    const { finding } = this.props
+    const { finding, Ads } = this.props
 
     return (
       <section class="result">
@@ -37,6 +38,7 @@ class ItemFoundTable extends React.Component {
             }
           </tbody>
         </table>
+        { Ads && <Ads/> }
       </section>
     )
   }

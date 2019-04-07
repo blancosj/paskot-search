@@ -108,6 +108,7 @@ class App extends React.Component {
 
     const { search } = this.props
     const { q, results, filter, searching } = search
+    const adsPos = Math.floor(Math.random() * results.length)
 
     const filteredResults = _.findIndex(['all', ''], (o) => o === filter) > -1
       ? results
@@ -143,17 +144,17 @@ class App extends React.Component {
               </div>
               {
                 _.map(filteredResults, (value, key, collection) => {
+                  const AdsContainer = adsPos % key == 0 ? AdsItem : 'span'
                   switch (value.typeItem) {
                     case 'IMAGE':
-                      return ( <ItemFoundImage finding={value} /> )
+                      return ( <ItemFoundImage finding={value} Ads={AdsContainer} /> )
                     case 'TABLE':
-                      return ( <ItemFoundTable finding={value} /> )
+                      return ( <ItemFoundTable finding={value} Ads={AdsContainer} /> )
                     default:
-                      return ( <ItemFound finding={value} /> )
+                      return ( <ItemFound finding={value} Ads={AdsContainer} /> )
                   }
                 })
               }
-              { <AdsItem/> }
               { !_.isEmpty(results) && <hr/> }
             </main>
           </div>
