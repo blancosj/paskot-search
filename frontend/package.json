@@ -7,10 +7,10 @@
   "description": "",
   "main": "./src/index.jsx",
   "scripts": {
-    "clean": "rimraf ../public",
     "start": "node ./dist/bundle.js",
     "watch": "webpack -p --config webpack.config.dev.js --watch --progress",
     "build": "webpack -p --config webpack.config.dev.js --progress",
+    "prebuild": "rimraf ../public",    
     "release": "webpack -p --config webpack.config.release.js --progress",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

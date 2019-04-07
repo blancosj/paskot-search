@@ -20,3 +20,5 @@ class AdsItem extends React.Component {
     )
   }
 }
+
+export default AdsItem
