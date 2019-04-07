@@ -9,6 +9,7 @@ import ItemFoundTable from './ItemFoundTable'
 import ItemFoundImage from './ItemFoundImage'
 import { Provider, connect } from 'react-redux'
 import { searchRequest, filterResults } from './store'
+import { withRouter } from "react-router"
 
 class App extends React.Component {
 
@@ -24,20 +25,31 @@ class App extends React.Component {
   }
 
   constructor(props) {
-    super(props);
+    super(props)
 
-    this.search = React.createRef();
-    this.state = this.INITIAL_STATE;
+    this.search = React.createRef()
+    this.state = this.INITIAL_STATE
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    const { search } = this.props
+    const { doNewSearch, q } = search
+
+    doNewSearch && this.doSearch(q)
+  }
+
+  componentWillReceiveProps(nextProps) {
+
   }
 
   doSearch(q) {
     this.props.dispatch(searchRequest(q))
+    this.props.history.push(`/?q=${q}`)
   }
 
   handleOnSubmit(event) {
-    event.preventDefault();
-
-    this.doSearch(this.search.current.value);
+    event.preventDefault()
+    this.doSearch(this.search.current.value)
   }
 
   handleOnClick(event) {
@@ -123,7 +135,10 @@ class App extends React.Component {
           <div class="terminal-search">
             <form class="form-search" action="#" method="post" onSubmit={::this.handleOnSubmit}>
               <div class="search-input">
-                <input id="search" name="search" type="text" ref={this.search} required="" minlength="2" autocomplete="off" autofocus="on"/>
+                <input id="search" name="search" type="text"
+                  class="search-box" placeholder=" "
+                  ref={this.search} required="" minlength="2" autocomplete="off" autofocus="on"/>
+                <button class="delete-icon" type="reset">X</button>
                 <button class="btn btn-default">Search</button>
               </div>
             </form>
@@ -162,11 +177,11 @@ class App extends React.Component {
   }
 }
 
-export default connect(
+export default withRouter(connect(
   (state, ownProps) => {
     return {
       search: _.get(state, 'search', { q: '', results: [] }),
       bootstrapped: _.get(state, 'bootstrapped')
     }
   },
-)(App)
+)(App))

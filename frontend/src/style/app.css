@@ -29,21 +29,13 @@ div.search-input {
   display: flex;
 }
 
-.search-input > * {
-
-}
-
-.search-input > input {
-
+.search-box:placeholder-shown ~ .delete-icon {
+	display: none;
 }
 
 .search-input > button {
   border: 1px solid black;
   margin-left: 5px;
-}
-
-.form-search {
-
 }
 
 .components-grid {

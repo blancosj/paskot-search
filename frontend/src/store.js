@@ -3,7 +3,7 @@ import thunk from 'redux-thunk'
 import { createLogger } from 'redux-logger'
 import { combineReducers } from 'redux'
 import _ from 'lodash'
-import { persistStore, persistReducer } from 'redux-persist'
+import { persistStore, persistReducer, REHYDRATE } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import JSONStream from 'JSONStream'
 
@@ -14,16 +14,31 @@ const { ignore } = require('stream-json/filters/Ignore')
 const { streamValues } = require('stream-json/streamers/StreamValues')
 const { streamArray } = require('stream-json/streamers/StreamArray')
 
+const FILTER_RESULTS = 'FILTER_RESULTS'
+const SEARCH_STARTED = 'SEARCH_STARTED'
+const SEARCH_PROGRESS = 'SEARCH_PROGRESS'
+const SEARCH_SUCCESS = 'SEARCH_SUCCESS'
+
+const INITIAL_STATE = {
+  q: '',
+  results: [],
+  filter: '',
+  searching: false,
+  doNewSearch: false
+}
+
+const rehydrationComplete = () => _.noop()
+
 export const filterResults = filter => (dispatch, getState) =>
   dispatch({
-    type: 'FILTER_RESULTS',
+    type: FILTER_RESULTS,
     filter
   })
 
 export const searchRequest = q => (dispatch, getState) => {
 
   dispatch({
-    type: 'SEARCH_STARTED',
+    type: SEARCH_STARTED,
     q
   })
 
@@ -45,7 +60,7 @@ export const searchRequest = q => (dispatch, getState) => {
         streamArray(),
         data => {
           dispatch({
-            type: 'SEARCH_PROGRESS',
+            type: SEARCH_PROGRESS,
             results: [ data.value ],
             q
           })
@@ -53,7 +68,7 @@ export const searchRequest = q => (dispatch, getState) => {
       ])
 
       pipeline.on('end', () => {
-        dispatch({ type: 'SEARCH_SUCCESS' })
+        dispatch({ type: SEARCH_SUCCESS })
       })
 
       const processor = result => {
@@ -70,19 +85,19 @@ export const searchRequest = q => (dispatch, getState) => {
     })
   }
 
-export const search = (state = { q: '', results: [], filter: '', searching: false }, action) => {
+export const search = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case 'SEARCH_STARTED':
+    case SEARCH_STARTED:
       return {...state,
         ...{
           q: action.q,
           results: [],
           filter: '',
-          searching: true
+          searching: true,
+          doNewSearch: false
         }
       }
-    case 'SEARCH_PROGRESS':
-
+    case SEARCH_PROGRESS:
       if (!_.isArray(action.results)) {
         return state
       }
@@ -97,15 +112,29 @@ export const search = (state = { q: '', results: [], filter: '', searching: fals
           results: sortedResults
         }
       }
-    case 'SEARCH_SUCCESS':
+    case SEARCH_SUCCESS:
       return {...state,
         ...{
           searching: false
         }
       }
-    case 'FILTER_RESULTS':
+    case FILTER_RESULTS:
       return {...state,
-        ...{ filter: action.filter }}
+        ...{ filter: action.filter }
+      }
+    case REHYDRATE:
+      const params = new URLSearchParams(window.location.search)
+      if (action.payload.search.q !== params.get('q')) {
+        return {...state,
+          ...{
+            q: params.get('q'),
+            results: [],
+            doNewSearch: true
+          }
+        }
+      } else {
+        return state
+      }
     default:
       return state
   }
@@ -135,6 +164,6 @@ export default () => {
   const store = createStore(persistedReducer, initialState, composedEnhancers)
   return {
     store,
-    persistor: persistStore(store)
+    persistor: persistStore(store, {}, rehydrationComplete)
   }
 }

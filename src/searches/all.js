@@ -26,7 +26,7 @@ const items = [
   require('./extract-rss.js')
     ('http://news.nationalgeographic.com/index.rss', 'news', 'National Geographic'),
   require('./nasa.gov-images.js')
-  
+
 ]
 
 const all = (req, res) => {
@@ -37,6 +37,12 @@ const all = (req, res) => {
   res.writeHead(200)
 
   res.write('{"findings":[')
+
+  if (!_.isString(req.body.s)) {
+    res.write(']}')
+    res.end()
+    return
+  }
 
   return Promise
     .map(items, source => source(req)
