@@ -61,7 +61,7 @@ class App extends React.Component {
       <section class="results">
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         <ins class="adsbygoogle"
-             style="display:block"
+             style={{display:"block"}}
              data-ad-format="fluid"
              data-ad-layout-key="-fb+5w+4e-db+86"
              data-ad-client="ca-pub-7090864477039814"
