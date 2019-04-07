@@ -8,7 +8,7 @@ import ItemFound from './ItemFound'
 import ItemFoundTable from './ItemFoundTable'
 import ItemFoundImage from './ItemFoundImage'
 import { Provider, connect } from 'react-redux'
-import { searchRequest, filterResults } from './store'
+import { searchRequest, filterResults, cleanResults } from './store'
 import { withRouter } from "react-router"
 
 class App extends React.Component {
@@ -38,10 +38,6 @@ class App extends React.Component {
     doNewSearch && this.doSearch(q)
   }
 
-  componentWillReceiveProps(nextProps) {
-
-  }
-
   doSearch(q) {
     this.props.dispatch(searchRequest(q))
     this.props.history.push(`/?q=${q}`)
@@ -50,6 +46,10 @@ class App extends React.Component {
   handleOnSubmit(event) {
     event.preventDefault()
     this.doSearch(this.search.current.value)
+  }
+
+  handleOnReset(event) {
+    this.props.dispatch(cleanResults())
   }
 
   handleOnClick(event) {
@@ -133,7 +133,9 @@ class App extends React.Component {
       <div class="container">
         <div class="terminal-nav">
           <div class="terminal-search">
-            <form class="form-search" action="#" method="post" onSubmit={::this.handleOnSubmit}>
+            <form class="form-search" action="#" method="post"
+                onReset={::this.handleOnReset}
+                onSubmit={::this.handleOnSubmit}>
               <div class="search-input">
                 <input id="search" name="search" type="text"
                   class="search-box" placeholder=" "

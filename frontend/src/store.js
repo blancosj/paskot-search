@@ -18,6 +18,7 @@ const FILTER_RESULTS = 'FILTER_RESULTS'
 const SEARCH_STARTED = 'SEARCH_STARTED'
 const SEARCH_PROGRESS = 'SEARCH_PROGRESS'
 const SEARCH_SUCCESS = 'SEARCH_SUCCESS'
+const CLEAN_RESULTS = 'CLEAN_RESULTS'
 
 const INITIAL_STATE = {
   q: '',
@@ -28,6 +29,11 @@ const INITIAL_STATE = {
 }
 
 const rehydrationComplete = () => _.noop()
+
+export const cleanResults = () => (dispatch, getState) =>
+  dispatch({
+    type: CLEAN_RESULTS
+  })
 
 export const filterResults = filter => (dispatch, getState) =>
   dispatch({
@@ -87,6 +93,8 @@ export const searchRequest = q => (dispatch, getState) => {
 
 export const search = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case CLEAN_RESULTS:
+      return INITIAL_STATE
     case SEARCH_STARTED:
       return {...state,
         ...{
@@ -124,7 +132,7 @@ export const search = (state = INITIAL_STATE, action) => {
       }
     case REHYDRATE:
       const params = new URLSearchParams(window.location.search)
-      if (action.payload.search.q !== params.get('q')) {
+      if (_.get(action, 'payload.search.q', '') !== params.get('q')) {
         return {...state,
           ...{
             q: params.get('q'),
