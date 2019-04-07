@@ -7,6 +7,7 @@ import _ from 'lodash'
 import ItemFound from './ItemFound'
 import ItemFoundTable from './ItemFoundTable'
 import ItemFoundImage from './ItemFoundImage'
+import AdsItem from './AdsItem'
 import { Provider, connect } from 'react-redux'
 import { searchRequest, filterResults, cleanResults } from './store'
 import { withRouter } from "react-router"
@@ -54,20 +55,6 @@ class App extends React.Component {
 
   handleOnClick(event) {
 
-  }
-
-  ads() {
-    return (
-      <section class="results">
-        <ins class="adsbygoogle"
-             style={{display:"block"}}
-             data-ad-format="fluid"
-             data-ad-layout-key="-fb+5w+4e-db+86"
-             data-ad-client="ca-pub-7090864477039814"
-             data-ad-slot="8697644025"></ins>
-        { (adsbygoogle = window.adsbygoogle || []).push({}) }
-      </section>
-    )
   }
 
   encodeHTML(s) {
@@ -166,7 +153,7 @@ class App extends React.Component {
                   }
                 })
               }
-              { this.ads() }
+              { <AdsItem/> }
               { !_.isEmpty(results) && <hr/> }
             </main>
           </div>
