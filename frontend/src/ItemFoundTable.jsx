@@ -12,7 +12,7 @@ class ItemFoundTable extends React.Component {
     const { finding } = this.props
 
     return (
-      <section>
+      <section class="result">
         <h3>{`${finding.header} - ${finding.content.caption}`}</h3>
         <table>
           <thead><tr>
