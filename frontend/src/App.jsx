@@ -59,8 +59,16 @@ class App extends React.Component {
   ads() {
     return (
       <section class="results">
-        <amp-auto-ads type="adsense" data-ad-client="ca-pub-7090864477039814">
-        </amp-auto-ads>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-format="fluid"
+             data-ad-layout-key="-fb+5w+4e-db+86"
+             data-ad-client="ca-pub-7090864477039814"
+             data-ad-slot="8697644025"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
       </section>
     )
   }
