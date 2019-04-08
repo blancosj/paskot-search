@@ -25,6 +25,8 @@ class App extends React.Component {
     q: ''
   }
 
+  DEFAULT_SEARCH = 'today'
+
   constructor(props) {
     super(props)
 
@@ -36,7 +38,7 @@ class App extends React.Component {
     const { search } = this.props
     const { doNewSearch, q } = search
 
-    doNewSearch && this.doSearch(q)
+    doNewSearch && this.doSearch(_.defaultTo(q, this.DEFAULT_SEARCH))
   }
 
   doSearch(q) {
