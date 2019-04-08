@@ -38,7 +38,7 @@ const search = (url, source, titleTail) => (req) => {
       )
     })
 
-    request(options).pipe(() => pass(arguments))
+    request(options).pipe(pass)
   })
 }
 
