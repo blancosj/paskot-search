@@ -38,7 +38,7 @@ const search = (url, source, titleTail) => (req) => {
       )
     })
 
-    request(options).on('error', console.log).pipe(pass)
+    request(options).pipe(() => pass(arguments))
   })
 }
 
