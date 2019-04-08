@@ -51,7 +51,6 @@ const all = (req, res) => {
       })
       , { concurrency: 6 })
     .then(() => res.end('null]}'))
-    .catch(err => res.end('null]}'))
 }
 
 module.exports = all;
