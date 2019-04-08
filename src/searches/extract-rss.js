@@ -2,6 +2,7 @@ var request = require('request')
 var _ = require('lodash')
 var Stream = require('stream')
 var moment = require('moment')
+var process = require('process')
 
 var XmlStream = require('xml-stream')
 
@@ -36,6 +37,11 @@ const search = (url, source, titleTail) => (req) => {
           .filter(item => item.m.length > 0)
         )
       )
+    })
+
+    process.on('unhandledRejection', (reason, p) => {
+      console.log('Unhandled Rejection at:', p, 'reason:', reason);
+      // Application specific logging, throwing an error, or other logic here
     })
 
     request(options).pipe(pass)
