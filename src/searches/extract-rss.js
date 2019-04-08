@@ -1,8 +1,9 @@
-var request = require('request')
-var _ = require('lodash')
-var Stream = require('stream')
-var moment = require('moment')
-var process = require('process')
+const request = require('request')
+const _ = require('lodash')
+const Stream = require('stream')
+const moment = require('moment')
+const process = require('process')
+const PassThroughTryCatch = require('./PassThroughTryCatch')
 
 var XmlStream = require('xml-stream')
 
@@ -22,8 +23,19 @@ const search = (url, source, titleTail) => (req) => {
     }
 
     let result = [ ]
-    const { PassThrough } = new require('stream')
-    const pass = new PassThrough()
+    // const { PassThrough } = new require('stream')
+    const pass = new PassThroughTryCatch()
+
+    // const myPassThrough = new Transform()
+    // myPassThrough.prototype.transform = (chunk, encoding, cb) => {
+    //     try {
+    //       cb(null, chunk)
+    //     } catch (err) {
+    //       cb(err)
+    //     }
+    //   }
+    // }
+
     const xml = new XmlStream(pass)
 
     xml.on('endElement: item', item => {
@@ -37,11 +49,6 @@ const search = (url, source, titleTail) => (req) => {
           .filter(item => item.m.length > 0)
         )
       )
-    })
-
-    process.on('unhandledRejection', (reason, p) => {
-      console.log('Unhandled Rejection at:', p, 'reason:', reason);
-      // Application specific logging, throwing an error, or other logic here
     })
 
     request(options).pipe(pass)

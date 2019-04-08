@@ -1,5 +1,5 @@
-var request = require('request')
-var _ = require('lodash')
+const request = require('request')
+const _ = require('lodash')
 
 const LIMIT_RESULTS = 3
 
@@ -36,7 +36,7 @@ const parse = (data) => _.map(_.take(data['bestMatches'], LIMIT_RESULTS), (value
       },
       'meta': {
         'sorted': _.first(value['name'])
-      },      
+      },
       'source': 'market'
     }
   })

@@ -1,5 +1,5 @@
-var request = require('request')
-var _ = require('lodash')
+const request = require('request')
+const _ = require('lodash')
 
 const LIMIT_RESULTS = 10
 

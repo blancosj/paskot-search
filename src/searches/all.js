@@ -1,8 +1,7 @@
-var request = require('request')
-var _ = require('lodash')
-// var _ = require('highland')
-var JSONStream = require('JSONStream')
-var Promise = require('bluebird')
+const request = require('request')
+const _ = require('lodash')
+const JSONStream = require('JSONStream')
+const Promise = require('bluebird')
 
 const items = [
   require('./mediawiki.org.js'),
