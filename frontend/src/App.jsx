@@ -146,7 +146,8 @@ class App extends React.Component {
               <div class="summary-results">
                 { searching && <header>...</header> }
                 { !searching && _.isEmpty(results) && !_.isEmpty(q) && <header>Nothing found.</header> }
-                { !searching && !_.isEmpty(results) && !_.isEmpty(q) && <header>{results.length} results for <ins>{q}</ins></header> }
+                { !searching && !_.isEmpty(results) && !_.isEmpty(q) && <header>{results.length} results for <ins>{q}</ins>.</header> }
+                <p class="email-contact"><a href="mailto:search@paskot.com">send email here to be listed in this index</a></p>
               </div>
               {
                 _.map(filteredResults, (value, key, collection) => {

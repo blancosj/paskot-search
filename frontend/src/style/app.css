@@ -88,3 +88,8 @@ section.result .terminal-card figure {
 .terminal-container {
   margin-top: 5px;
 }
+
+.email-contact {
+  margin-top: -0.75em;
+  font-size: 0.65em;
+}
