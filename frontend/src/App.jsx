@@ -46,9 +46,8 @@ class App extends React.Component {
   doSearch(q) {
     this.props.dispatch(searchRequest(q))
 
-    const title = `${this.PAGE_TITLE} | ${q}`
     this.props.history.push(`?q=${q}`)
-    document.title = title
+    document.title = `${this.PAGE_TITLE} | ${q}`
   }
 
   handleOnSubmit(event) {

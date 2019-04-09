@@ -14,7 +14,9 @@ function PassThroughTryCatch(options) {
 PassThroughTryCatch.prototype._transform = function(chunk, encoding, cb) {
   try {
     cb(null, chunk)
-  } catch (err) { _.noop() }
+  } catch (err) {
+    this.emit('end')
+  }
 }
 
 module.exports = PassThroughTryCatch
