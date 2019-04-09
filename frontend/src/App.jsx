@@ -27,6 +27,8 @@ class App extends React.Component {
 
   DEFAULT_SEARCH = 'today'
 
+  PAGE_TITLE = 'Paskot Search'
+
   constructor(props) {
     super(props)
 
@@ -43,7 +45,10 @@ class App extends React.Component {
 
   doSearch(q) {
     this.props.dispatch(searchRequest(q))
-    this.props.history.push(`/?q=${q}`)
+
+    const title = `${this.PAGE_TITLE} | ${q}`
+    this.props.history.push(title)
+    document.title = title
   }
 
   handleOnSubmit(event) {
