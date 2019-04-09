@@ -47,7 +47,7 @@ class App extends React.Component {
     this.props.dispatch(searchRequest(q))
 
     const title = `${this.PAGE_TITLE} | ${q}`
-    this.props.history.push(`/q=${q}`)
+    this.props.history.push(`?q=${q}`)
     document.title = title
   }
 
