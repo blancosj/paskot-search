@@ -13,7 +13,7 @@ class ItemFoundTable extends React.Component {
     const { finding, Ads } = this.props
 
     return (
-      <section class="result">
+      <section class="result-table">
         <h3>{`${finding.header} - ${finding.content.caption}`}</h3>
         <table>
           <thead><tr>

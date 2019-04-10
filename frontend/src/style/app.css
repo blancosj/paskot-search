@@ -5,6 +5,7 @@ html {
 
 body {
   /* background-color: gray; */
+  width: 100%;
 }
 
 #syno-nsc-ext-gen3 {
@@ -74,7 +75,6 @@ div.search-input {
 
 .terminal-search {
   width: 100%;
-  margin-left: 10px;
 }
 
 section.result .terminal-card {
@@ -85,6 +85,19 @@ section.result .terminal-card figure {
   padding: 5px 5px 0px 5px;
 }
 
+section.result-regular, section.result-table {
+  border-radius:5px 5px 5px 5px;
+  -moz-border-radius:5px 5px 5px 5px;
+  -webkit-border-radius:5px 5px 5px 5px;
+
+  border-width:1px;
+  border-style:solid;
+  border-color:#b6c1c3;
+
+  margin: 1px 0px 5px 0px;
+  padding: 10px;
+}
+
 .terminal-container {
   margin-top: 5px;
 }
@@ -92,4 +105,9 @@ section.result .terminal-card figure {
 .email-contact {
   margin-top: -0.75em;
   font-size: 0.65em;
+}
+
+.container {
+  width: 100%;
+  padding: 10px;
 }
