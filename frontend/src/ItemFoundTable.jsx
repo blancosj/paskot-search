@@ -28,12 +28,21 @@ class ItemFoundTable extends React.Component {
           <tbody>
             {
               _.map(finding.content.data, (value, key, collection) => {
-                return (
-                  <tr>
-                    <td>{key}</td>
-                    <td>{value}</td>
-                  </tr>
-                )
+                if (key.indexOf('symbol') > -1) {
+                  return (
+                    <tr>
+                      <td>{key}</td>
+                      <td><a href={`?q=${value}`}>{value}</a></td>
+                    </tr>
+                  )
+                } else {
+                  return (
+                    <tr>
+                      <td>{key}</td>
+                      <td>{value}</td>
+                    </tr>
+                  )
+                }
               })
             }
           </tbody>
