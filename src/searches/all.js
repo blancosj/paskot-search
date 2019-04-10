@@ -24,8 +24,9 @@ const items = [
     ('https://www.npr.org/rss/rss.php', 'news', 'NPR Stories'),
   require('./extract-rss.js')
     ('http://news.nationalgeographic.com/index.rss', 'news', 'National Geographic'),
+  require('./extract-rss.js')
+    ('https://hnrss.org/newest', 'news', 'Hacker News'),
   require('./nasa.gov-images.js')
-
 ]
 
 const all = (req, res) => {
