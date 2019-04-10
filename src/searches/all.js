@@ -26,6 +26,8 @@ const items = [
     ('http://news.nationalgeographic.com/index.rss', 'news', 'National Geographic'),
   require('./extract-rss.js')
     ('https://hnrss.org/newest', 'news', 'Hacker News'),
+  require('./extract-rss.js')
+    ('https://www.cbssports.com/rss/headlines/soccer/', 'news', 'CBS Sports News'),
   require('./nasa.gov-images.js')
 ]
 
