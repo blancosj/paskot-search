@@ -28,6 +28,8 @@ const items = [
     ('https://hnrss.org/newest', 'news', 'Hacker News'),
   require('./extract-rss.js')
     ('https://www.cbssports.com/rss/headlines/soccer/', 'news', 'CBS Sports News'),
+  require('./extract-rss.js')
+    ('http://feeds.feedburner.com/SlickdealsnetUP', 'deals', 'Slick Deals'),
   require('./nasa.gov-images.js')
 ]
 
