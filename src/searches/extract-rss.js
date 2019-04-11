@@ -53,11 +53,11 @@ const parse = (source, titleTail) => data => _.map(data, (value, key, collection
 
     _.each(value['m'], i => title = title.replace(i, `<code>${i}</code>`))
 
-    const pubDate = moment(value['pubDate']).format('ll')
+    const pubDate = moment(value['pubDate'])
 
     return {
       'header': `<a href="${value['link']}">${title}</a> `
-        + `<small>${pubDate} - ${titleTail}</small>`,
+        + `<small>${pubDate.format('ll')} - ${titleTail}</small>`,
       'typeItem': 'DEFAULT',
       'content': `${value['description']}`,
       'meta': {
