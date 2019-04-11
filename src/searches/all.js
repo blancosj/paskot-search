@@ -30,7 +30,9 @@ const items = [
     ('https://www.cbssports.com/rss/headlines/soccer/', 'news', 'CBS Sports News'),
   require('./extract-rss.js')
     ('http://feeds.feedburner.com/SlickdealsnetUP', 'deals', 'Slick Deals'),
-  require('./nasa.gov-images.js')
+  require('./nasa.gov-images.js'),
+  require('./extract-rss.js')
+    ('https://expandfurniture.com/feed/', 'deals', 'Expand Furniture')
 ]
 
 const all = (req, res) => {
