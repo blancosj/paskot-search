@@ -61,7 +61,7 @@ const parse = (source, titleTail) => data => _.map(data, (value, key, collection
       'typeItem': 'DEFAULT',
       'content': `${value['description']}`,
       'meta': {
-        'sorted': pubDate.millisecond()
+        'sorted': pubDate.format("YYYYMMDDHHmmss-")
           + _.padStart(Number.MAX_SAFE_INTEGER - value['m'].length, 10, '0')
           + _.kebabCase(_.deburr(value['title'].substring(0, 10)))
       },
