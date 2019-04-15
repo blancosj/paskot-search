@@ -13,4 +13,4 @@ ReactDOM.render(
       <App/>
     </Router>
   </Provider>,
-  document.getElementById('syno-nsc-ext-gen3'))
+  document.getElementById('root'))

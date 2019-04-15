@@ -154,7 +154,8 @@ class App extends React.Component {
               </div>
               {
                 _.map(filteredResults, (value, key, collection) => {
-                  const AdsContainer = key == 0 ? AdsItem : 'span'
+                  // const AdsContainer = key == 0 ? AdsItem : 'span'
+                  const AdsContainer = 'span'
                   switch (value.typeItem) {
                     case 'IMAGE':
                       return ( <ItemFoundImage finding={value} Ads={AdsContainer} /> )
