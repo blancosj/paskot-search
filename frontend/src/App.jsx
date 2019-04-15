@@ -10,7 +10,7 @@ import ItemFoundImage from './ItemFoundImage'
 import AdsItem from './AdsItem'
 import { Provider, connect } from 'react-redux'
 import { searchRequest, filterResults, cleanResults } from './store'
-import { withRouter } from "react-router"
+import { withRouter } from 'react-router'
 
 class App extends React.Component {
 
