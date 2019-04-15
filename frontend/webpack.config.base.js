@@ -48,8 +48,8 @@ module.exports = {
     }),
     new CopyWebpackPlugin([
         { from: 'public/manifest.json', to: path.resolve(__dirname, '../public') },
-        { from: 'src/assets/img/icon-192.jpg', to: path.resolve(__dirname, '../public/img') },
-        { from: 'src/assets/img/icon-512.jpg', to: path.resolve(__dirname, '../public/img') }
+        { from: 'src/assets/img/icon-192.png', to: path.resolve(__dirname, '../public/img') },
+        { from: 'src/assets/img/icon-512.png', to: path.resolve(__dirname, '../public/img') }
     ])
   ]
 }
