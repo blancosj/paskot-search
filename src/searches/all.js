@@ -4,6 +4,7 @@ const JSONStream = require('JSONStream')
 const Promise = require('bluebird')
 
 const items = [
+  require('./ads.js'),
   require('./mediawiki.org.js'),
   require('./alphavantage.co-keyword.js'),
   require('./alphavantage.co-ticker.js'),

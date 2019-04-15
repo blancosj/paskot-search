@@ -4,13 +4,12 @@ import PropTypes from 'prop-types';
 class ItemFound extends React.Component {
 
   static propTypes = {
-    finding: PropTypes.any.isRequired,
-    Ads: PropTypes.element
+    finding: PropTypes.any.isRequired
   }
 
   render() {
 
-    const { finding, Ads } = this.props
+    const { finding } = this.props
     const { images } = finding
     const header = {__html: finding.header}
     const content = {__html: finding.content}
@@ -34,7 +33,6 @@ class ItemFound extends React.Component {
             )
           }
         </div>
-        { Ads && <Ads/> }
       </section>
     )
   }

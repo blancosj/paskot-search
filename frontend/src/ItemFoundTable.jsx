@@ -4,13 +4,12 @@ import PropTypes from 'prop-types';
 class ItemFoundTable extends React.Component {
 
   static propTypes = {
-    finding: PropTypes.any.isRequired,
-    Ads: PropTypes.element
+    finding: PropTypes.any.isRequired
   }
 
   render() {
 
-    const { finding, Ads } = this.props
+    const { finding } = this.props
 
     return (
       <section class="result-table">
@@ -47,7 +46,6 @@ class ItemFoundTable extends React.Component {
             }
           </tbody>
         </table>
-        { Ads && <Ads/> }
       </section>
     )
   }
