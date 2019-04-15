@@ -132,7 +132,7 @@ class App extends React.Component {
                   class="search-box" placeholder=" "
                   ref={this.search} required="" minlength="2"
                   autocomplete="off" autofocus="on"
-                  onChange={_.debounce(::this.handleOnSubmit, 350)}
+                  onChange={_.debounce(::this.handleOnSubmit, 520)}
                   />
                 <button class="delete-icon" type="reset">X</button>
                 <button class="btn btn-default">Search</button>
