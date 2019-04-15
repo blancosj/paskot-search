@@ -13,7 +13,7 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": "/?q=today",
+  "start_url": "/?q=pepe",
   "background_color": "#3367D6",
   "display": "standalone",
   "scope": "/",
